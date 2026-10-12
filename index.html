@@ -714,7 +714,7 @@
         <!-- قسم الشعر -->
         <section id="sec-poetry" class="section">
             <div class="section-header">
-                <h2 class="section-title">المخطوطات الشعرية</h2>
+                <h2 class="section-title">مخطوطتي الشعرية</h2>
                 <button class="btn-add" onclick="openAddModal('poetry')">✨ إضافة قصيدة</button>
             </div>
             <div id="poetry-list"></div>
@@ -732,7 +732,7 @@
         <!-- قسم المفضلة -->
         <section id="sec-favs" class="section">
             <div class="section-header">
-                <h2 class="section-title">المكتبة المفضلة ❤️</h2>
+                <h2 class="section-title">المكتبه-المفضلة</h2>
             </div>
             <div id="favs-list"></div>
         </section>
@@ -757,7 +757,7 @@
             </div>
             <div class="modal-buttons" style="justify-content: center;">
                 <button class="btn-cancel" onclick="closeCardGen()">إلغاء</button>
-                <button class="btn-save" onclick="downloadCardImage()">📥 تحميل البطاقة</button>
+                <button class="btn-save" onclick="downloadCardImage()">📥 تحميل الصوره</button>
             </div>
         </div>
     </div>
@@ -910,7 +910,7 @@
                         
                         <div class="card-badges">
                             ${p.isPinned ? '<span class="badge badge-pinned">📌 مثبتة</span>' : ''}
-                            ${p.isLiked ? '<span class="badge badge-fav">❤️ مفضلة</span>' : ''}
+                            ${p.isLiked ? '<span class="badge badge-fav"></span>' : ''}
                         </div>
                         
                         <div class="options-container">
@@ -962,7 +962,7 @@
                     
                     <div class="card-badges">
                         ${p.isPinned ? '<span class="badge badge-pinned">📌 مثبت</span>' : ''}
-                        ${p.isLiked ? '<span class="badge badge-fav">❤️ مفضل</span>' : ''}
+                        ${p.isLiked ? '<span class="badge badge-fav"></span>' : ''}
                     </div>
 
                     <div class="options-container">
@@ -1022,7 +1022,7 @@
                 favHTML += `
                     <div class="card favorite-card">
                         <div class="card-badges">
-                            <span class="badge badge-fav">❤️ قصيدة مفضلة</span>
+                            <span class="badge badge-fav">قصيدة مفضلة</span>
                         </div>
                         
                         <div class="options-container">
