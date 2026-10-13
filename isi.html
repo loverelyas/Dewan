@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دِيوَانُ حَافِظٍ - المَخْطُوطَةُ المَلَكِيَّةُ</title>
+    
+    <!-- الخطوط العربية الفاخرة للخط الديواني والأميري -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold-primary: #dfb15b;
+            --gold-light: #f7d78e;
+            --gold-dark: #8c6a2d;
+            --bg-dark: #07090e;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(223, 177, 91, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 50% 80%, rgba(14, 20, 32, 0.8) 0%, transparent 70%),
+                linear-gradient(180deg, #05070a 0%, #0a0e17 50%, #05070a 100%);
+            background-attachment: fixed;
+            color: #f1f5f9;
+            font-family: 'Aref Ruqaa', 'Amiri', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* 1. الإطار الأندلسي المزدوج الثابت */
+        .royal-frame-outer {
+            position: fixed;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 2px solid rgba(223, 177, 91, 0.35);
+            border-radius: 18px;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        .royal-frame-inner {
+            position: fixed;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px dashed rgba(223, 177, 91, 0.2);
+            border-radius: 14px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* 2. زخارف الزوايا */
+        .corner-decoration {
+            position: fixed;
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.85;
+            text-shadow: 0 0 10px rgba(223, 177, 91, 0.4);
+        }
+        .top-right { top: 22px; right: 25px; }
+        .top-left { top: 22px; left: 25px; }
+        .bottom-right { bottom: 22px; right: 25px; }
+        .bottom-left { bottom: 22px; left: 25px; }
+
+        /* 3. كارت الغلاف الملكي */
+        .diwan-card {
+            width: 440px;
+            max-width: 90vw;
+            background: rgba(13, 18, 28, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(223, 177, 91, 0.3);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 40px rgba(223, 177, 91, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-crown {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            letter-spacing: 4px;
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(223, 177, 91, 0.5);
+        }
+
+        .header-title {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0.2rem 0 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f7d78e 45%, #ca9e48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.9));
+            line-height: 1.2;
+        }
+
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 1rem auto;
+            width: 70%;
+        }
+
+        .gold-divider::before, .gold-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .header-subtitle {
+            font-family: 'Amiri', serif;
+            font-size: 1.25rem;
+            color: var(--gold-primary);
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* 4. تصميم البيت الشعري */
+        .poem-box {
+            background: rgba(223, 177, 91, 0.05);
+            border-right: 2px solid var(--gold-primary);
+            border-left: 2px solid var(--gold-primary);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.8rem;
+            width: 88%;
+        }
+
+        .poem-verse {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #f1f5f9;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            margin: 0;
+        }
+
+        /* 5. زر الدخول المذهب والتفاعلي كربط للانتقال */
+        .enter-btn {
+            background: linear-gradient(135deg, #dfb15b 0%, #b38e55 100%);
+            color: #07090e;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            padding: 0.75rem 2.8rem;
+            border: 1px solid #f7d78e;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(223, 177, 91, 0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(223, 177, 91, 0.5), inset 0 1px 0 rgba(255,255,255,0.6);
+            background: linear-gradient(135deg, #f7d78e 0%, #dfb15b 100%);
+        }
+
+        .enter-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* 6. قسم توقيع المطور */
+        .developer-tag {
+            margin-top: 1.6rem;
+            font-family: 'Reem Kufi', 'Amiri', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(223, 177, 91, 0.75);
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-name {
+            color: var(--gold-light);
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(223, 177, 91, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الإطارات والزخارف الثابتة -->
+    <div class="royal-frame-outer"></div>
+    <div class="royal-frame-inner"></div>
+
+    <div class="corner-decoration top-right">🕮</div>
+    <div class="corner-decoration top-left">🕮</div>
+    <div class="corner-decoration bottom-right">❦</div>
+    <div class="corner-decoration bottom-left">❦</div>
+
+    <!-- كارت الواجهة الرئيسية للديوان -->
+    <div class="diwan-card">
+        
+        <div class="header-crown">﴿ ۞ ﴾</div>
+        <h1 class="header-title">دِيوَانُ حَافِظٍ</h1>
+        
+        <div class="gold-divider">
+            <span style="color: var(--gold-light); font-size: 0.9rem;">✦</span>
+        </div>
+        
+        <div class="header-subtitle">"مَخْطُوطَاتٌ أَدَبِيَّةٌ وَخَوَاطِرُ خَالِدَةٌ"</div>
+
+        <!-- إضافة البيت الشعري -->
+        <div class="poem-box">
+            <p class="poem-verse">
+                عَلَى قَدْرِ أَهْلِ العَزْمِ تَأْتِي العَزَائِمُ<br>
+                وَتَأْتِي عَلَى قَدْرِ الكِرَامِ المَكَارِمُ
+            </p>
+        </div>
+
+        <!-- زر الدخول المباشر والانتقال لصفحة المحتوى (main.html) -->
+        <a href="main.html" class="enter-btn">
+            <span>دُخُولُ الدِّيوَانِ</span>
+            <span style="font-size: 1.2rem;">✒️</span>
+        </a>
+
+        <!-- توقيع واسم المطور -->
+        <div class="developer-tag">
+            <span>تَطْوِيرُ وتَصْمِيمُ:</span>
+            <span class="developer-name">أمِير</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
