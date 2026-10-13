@@ -1,15 +1,16 @@
 {
   "name": "ديواني الخالد",
   "short_name": "ديوان حافظ",
-  "start_url": "./index.html",
+  "start_url": "./login.html",
   "display": "standalone",
-  "background_color": "#090c10",
+  "background_color": "#07090e",
   "theme_color": "#dfb15b",
   "icons": [
     {
       "src": "img.jpeg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
