@@ -1,43 +1,50 @@
-const CACHE_NAME = 'diwan-store-v2';
-const ASSETS_TO_CACHE = [
+const CACHE_NAME = 'diwan-v3';
+const URLS_TO_CACHE = [
   './',
   './index.html',
   './login.html',
-  './manifest.json',
-  'img.jpeg'
+  './manifest.json'
 ];
 
-// مرحلة التثبيت وتخزين الملفات في الكاش
-self.addEventListener('install', (e) => {
-  e.waitUntil(
+// 1. التثبيت والتخزين المباشر
+self.addEventListener('install', (event) => {
+  self.skipWaiting(); // التفعيل الفوري بدون انتظار
+  event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return cache.addAll(URLS_TO_CACHE);
     })
   );
-  self.skipWaiting();
 });
 
-// مرحلة التفعيل وتنظيف الكاش القديم
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) => {
+// 2. التفعيل وتنظيف الكاش القديم
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// جلب الملفات من الكاش أثناء انقطاع الإنترنت
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
+// 3. الاستجابة للطلبات
+self.addEventListener('fetch', (event) => {
+  // تجنب كاش طلبات غير HTTP/HTTPS
+  if (!event.request.url.startsWith('http')) return;
+
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request).catch(() => {
+        // إذا انقطع النت، استرجع صفحة index أو login
+        return caches.match('./index.html');
+      });
     })
   );
 });
